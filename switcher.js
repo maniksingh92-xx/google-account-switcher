@@ -29,9 +29,13 @@
 
   function getAccounts() {
 
-    if(document.getElementsByClassName("gb_db").length != 0) {
+    if(document.getElementsByClassName("gb_db").length != 0 || tries > 9) {
       clearInterval(recheck);
     }
+
+    //Counter to terminate rechecks after 10 tries (20 secs total)
+    tries += 1;
+
     //Wait 1 sec for DOM elements to download
     window.setTimeout( null, 1000);
 
