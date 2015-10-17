@@ -1,24 +1,12 @@
 (function() {
   "use strict";
 
-  //Fetch html elements containing href of accounts
-  var accounts = document.getElementsByClassName("gb_eb");
+  var accounts, currAcc, recheck;
+  var tries = 0;
 
-  //index for default active account
-  var currAcc = 0;
-
-  //Find the active account index
-  for(var i=0;i<accounts.length;i++) {
-    if(accounts[i].classList.contains("gb_gb")) {
-      currAcc = i;
-      break;
-    }
-  }
-
-  if(accounts.length > 1) {
-    document.addEventListener("keydown", keyEvent);
-  }
-
+  window.onload = function () {
+    recheck = window.setInterval(getAccounts, 2000);
+  };
 
   function keyEvent(event) {
     var key = event.keyCode || event.which;
@@ -37,6 +25,35 @@
         }
       }
     }
+  }
+
+  function getAccounts() {
+
+    if(document.getElementsByClassName("gb_db").length != 0) {
+      clearInterval(recheck);
+    }
+    //Wait 1 sec for DOM elements to download
+    window.setTimeout( null, 1000);
+
+    //Fetch html elements containing href of accounts
+    accounts = document.getElementsByClassName("gb_eb");
+    //index for default active account
+    currAcc = 0;
+
+    //console.log(accounts.length);
+
+    //Find the active account index
+    for(var i=0;i<accounts.length;i++) {
+      if(accounts[i].classList.contains("gb_gb")) {
+        currAcc = i;
+        break;
+      }
+    }
+
+    if(accounts.length > 1) {
+      document.addEventListener("keydown", keyEvent);
+    }
+
   }
 
 

@@ -13,7 +13,8 @@
         "*://*.google.com/*",
         "*://*.google.co.in/*"
       ],
-      "js": ["switcher.js"]
+      "js": ["switcher.js"],
+      "run_at" : "document_end"
     }
   ],
 
